@@ -1,9 +1,9 @@
 const express = require("express")
-const app = express
+const app = express()
 const {CreateTodo,updateTodo}=require("./type")
 const {todo}= require("./db")
 
-app.request(express.json());
+app.use(express.json());
 
 app.post("/todo",async function(req,res){
     const createPayload=req.body;

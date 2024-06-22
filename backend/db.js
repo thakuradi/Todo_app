@@ -4,7 +4,9 @@ mongoose.connect('mongodb+srv://thakur:7X%403uw8r@cluster0.ai2rpio.mongodb.net')
 const todoSchema = mongoose.Schema({
     title:"string",
     description:"string",
-    completed:"Boolean"
+    completed:{
+    type:"Boolean",
+    dfault:false}
 })
 const todo = mongoose.model('todos',todoSchema)
 module.exports={

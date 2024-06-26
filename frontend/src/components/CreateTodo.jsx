@@ -14,6 +14,6 @@ export function CreateTodo(){
         <button style ={{
             padding: 10,
             margin: 10
-        }} onPress={() => Alert.alert('Simple Button pressed')}> add a todo  </button>
+        }} > add a todo  </button>
     </div>
 }

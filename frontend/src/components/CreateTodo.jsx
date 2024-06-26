@@ -1,19 +1,59 @@
+import { useState } from "react";
 
+export function CreateTodo(props) {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-export function CreateTodo(){
-    return <div>
-        <input style ={{
-            padding: 10,
-            margin: 10
-        }}type="text" placeholder="title"></input> <br />
-        <input style ={{
-            padding: 10,
-            margin: 10
-        }} type="text" placeholder="description"></input> <br />
-
-        <button style ={{
-            padding: 10,
-            margin: 10
-        }} > add a todo  </button>
+  return (
+    <div>
+      <input
+        id="title"
+        style={{
+          padding: 10,
+          margin: 10,
+        }}
+        type="text"
+        placeholder="title"
+        onChange={(e) => {
+          setTitle(e.target.value);
+        }}
+      />{" "}
+      <br />
+      <input
+        id="desc"
+        style={{
+          padding: 10,
+          margin: 10,
+        }}
+        type="text"
+        placeholder="description"
+        onChange={(e) => {
+          setDescription(e.target.value);
+        }}
+      />{" "}
+      <br />
+      <button
+        style={{
+          padding: 10,
+          margin: 10,
+        }}
+        onClick={async () => {
+          const res = await fetch("http://localhost:3000/todo", {
+            method: "POST",
+            body: JSON.stringify({
+              title: title,
+              description: description,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          const json = await res.json();
+          alert("todo added");
+        }}
+      >
+        add a todo
+      </button>
     </div>
+  );
 }
